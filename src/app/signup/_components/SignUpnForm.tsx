@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from "react";
-import { useForm,  } from "react-hook-form";
+import { useForm} from "react-hook-form";
 
 interface FormValue {
 	email: string;
@@ -11,11 +11,11 @@ interface FormValue {
 }
 
 
-const onSubmit = () => {
+const onSubmit = (data: FormValue) => {
 
 }
 
-const LoginForm = () => {
+const SignUpnForm = () => {
 	const {
 		register,
 		handleSubmit,
@@ -24,12 +24,12 @@ const LoginForm = () => {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="form-control__items">
-				<label htmlFor="password">아이디</label>
+				<label htmlFor="userId">아이디</label>
 				<input
 					id="userId"
 					type="text"
 					placeholder="아이디를 입력해주세요."
-					{...register("user_id", {
+					{...register("userId", {
 						required: "아이디는 필수 입력입니다.",
 						minLength: {
 							value: 4,
@@ -42,12 +42,12 @@ const LoginForm = () => {
 				)}
 			</div>
 			<div className="form-control__items">
-				<label htmlFor="password">이름</label>
+				<label htmlFor="name">이름</label>
 				<input
 					id="name"
 					type="text"
 					placeholder="ex) 홍길동"
-					{...register("user_id", {
+					{...register("name", {
 						required: "이름은 필수 입력입니다.",
 						minLength: {
 							value: 3,
@@ -94,8 +94,9 @@ const LoginForm = () => {
 					<small role="alert">{errors.password.message}</small>
 				)}
 			</div>
+			<button type="submit">회원 가입</button>
 		</form>
 	)
 };
 
-export default LoginForm;
+export default SignUpnForm;
