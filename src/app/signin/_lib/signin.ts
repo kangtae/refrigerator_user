@@ -7,7 +7,7 @@ interface FormValue {
 }
 
 const onSubmit = async (data: FormValue) => {
-	const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/signup`, {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/signin`, {
 		method: 'post',
 		body: JSON.stringify(data),
 		credentials: 'include',

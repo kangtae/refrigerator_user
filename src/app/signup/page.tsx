@@ -1,10 +1,14 @@
 
 import React from 'react';
-import SignUpnForm from "@/app/signup/_components/SignUpnForm";
+import SignUpForm from "@/app/signup/_components/SignUpForm";
 
 const SignUp = () => {
 	return (
-		<SignUpnForm/>
+		<>
+			<h1>회원 가입 페이지</h1>
+			<br/><br/>
+			<SignUpForm/>
+		</>
 	)
 }
 

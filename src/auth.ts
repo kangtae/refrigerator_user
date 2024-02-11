@@ -1,3 +1,5 @@
+"use server";
+
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { cookies } from 'next/headers'
@@ -6,11 +8,13 @@ import cookie from 'cookie';
 export const {
 	handlers: { GET, POST },
 	auth,
-	signIn,
+	sign,
 } = NextAuth({
 	pages: {
+/*
 		signIn: '/i/flow/login',
-		newUser: '/i/flow/signup',
+*/
+		singUp: '/signup',
 	},
 	callbacks: {
 		jwt({ token}) {
@@ -23,18 +27,6 @@ export const {
 		}
 	},
 	events: {
-		signOut(data) {
-			console.log('auth.ts events signout', 'session' in data && data.session, 'token' in data && data.token);
-			// if ('session' in data) {
-			//   data.session = null;
-			// }
-			// if ('token' in data) {
-			//   data.token = null;
-			// }
-		},
-		session(data) {
-			console.log('auth.ts events session', 'session' in data && data.session, 'token' in data && data.token);
-		}
 	},
 	providers: [
 		CredentialsProvider({
