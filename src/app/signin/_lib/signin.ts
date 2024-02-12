@@ -9,6 +9,7 @@ interface FormValue {
 
 const onSubmit = async (data: FormValue) => {
 	try {
+		console.log("$44")
 		const response = await signIn("credentials", {
 			username: data.userId,
 			password : data.password,
