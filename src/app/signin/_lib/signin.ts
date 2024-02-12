@@ -1,3 +1,4 @@
+import {signIn} from "next-auth/react";
 
 interface FormValue {
 	email: string;
@@ -7,16 +8,15 @@ interface FormValue {
 }
 
 const onSubmit = async (data: FormValue) => {
-	const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/signin`, {
-		method: 'post',
-		body: JSON.stringify(data),
-		credentials: 'include',
-	})
-	if (response.error) {
-		// 에러 처리 로직
-		console.error(response.error);
-	} else {
-		// 회원가입 성공
+	try {
+		const response = await signIn("credentials", {
+			username: data.userId,
+			password : data.password,
+			redirect: false,
+		})
+		console.log("response",response)
+	} catch (err) {
+		console.error(err);
 	}
 }
 
