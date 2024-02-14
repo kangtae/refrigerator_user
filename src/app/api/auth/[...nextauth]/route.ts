@@ -3,47 +3,51 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import {cookies} from "next/headers";
 
 const handler = NextAuth({
-	providers: [
-		CredentialsProvider({
-			async authorize(credentials) {
-				console.log("4444",process.env.AUTH_URL)
-				alert(55)
-				const authResponse = await fetch(`${process.env.AUTH_URL}/api/auth/login`, {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						id: credentials.username,
-						password: credentials.password,
-					}),
-				})
-				alert("2")
-				let setCookie = authResponse.headers.get('Set-Cookie');
-				console.log('set-cookie', setCookie);
-				if (setCookie) {
-					const parsed = cookie.parse(setCookie);
-					cookies().set('connect.sid', parsed['connect.sid'], parsed); // 브라우저에 쿠키를 심어주는 것
-				}
-				if (!authResponse.ok) {
-					alert("4444")
-					return null
-				}
-
-				const user = await authResponse.json()
-				console.log('user', user);
-				return {
-					email: user.id,
-					name: user.nickname,
-					image: user.image,
-					...user,
-				}
-			},
-		}),
-	],
 	pages: {
 		signIn: '/signin',
 	},
+	providers: [
+		CredentialsProvider({
+			async authorize(credentials, req): Promise<any> {
+;				try {
+					const res = await fetch(
+						`${process.env.NEXTAUTH_URL}/api/login`,
+						{
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({
+								username: credentials?.username,
+								password: credentials?.password,
+							}),
+						})
+					console.log("res",res)
+
+					const user = await res.json()
+					return user || null
+				} catch (e) {
+					console.log("실패33")
+					throw new Error(e.response)
+				}
+			}
+		})
+	],
+
+	callbacks: {
+		async signIn({ user, account, profile, email, credentials }) {
+			const isAllowedToSignIn = true
+			console.log("5555111")
+			if (isAllowedToSignIn) {
+				return true
+			} else {
+				// Return false to display a default error message
+				return false
+				// Or you can return a URL to redirect to:
+				// return '/unauthorized'
+			}
+		}
+	}
 });
 
 export { handler as GET, handler as POST };

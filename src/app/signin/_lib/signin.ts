@@ -1,8 +1,9 @@
+"use client"
 import {signIn} from "next-auth/react";
 
 interface FormValue {
 	email: string;
-	password: string;
+	password: strin
 	userId: string;
 	name: string;
 }
