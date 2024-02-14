@@ -3,7 +3,7 @@ import {signIn} from "next-auth/react";
 
 interface FormValue {
 	email: string;
-	password: strin
+	password: string
 	userId: string;
 	name: string;
 }
