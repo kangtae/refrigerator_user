@@ -9,7 +9,7 @@ interface FormValue {
 	email: string;
 	password: string;
 	userId: string;
-	name: string;
+	userName: string;
 }
 
 
@@ -40,12 +40,12 @@ const SignUpForm = () => {
 				)}
 			</div>
 			<div className="form-control__items">
-				<label htmlFor="name">이름</label>
+				<label htmlFor="userName">이름</label>
 				<input
-					id="name"
+					id="userName"
 					type="text"
 					placeholder="ex) 홍길동"
-					{...register("name", {
+					{...register("userName", {
 						required: "이름은 필수 입력입니다.",
 						minLength: {
 							value: 3,
@@ -53,8 +53,8 @@ const SignUpForm = () => {
 						},
 					})}
 				/>
-				{errors.name && (
-					<small role="alert">{errors.name.message}</small>
+				{errors.userName && (
+					<small role="alert">{errors.userName.message}</small>
 				)}
 			</div>
 			<div>
