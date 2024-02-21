@@ -12,7 +12,7 @@ const onSubmit = async (data: FormValue) => {
 	try {
 		console.log("$44")
 		const response = await signIn("credentials", {
-			username: data.userId,
+			userId: data.userId,
 			password : data.password,
 			redirect: false,
 		})

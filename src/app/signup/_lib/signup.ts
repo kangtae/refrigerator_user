@@ -8,7 +8,10 @@ interface FormValue {
 
 const onSubmit = async (data: FormValue) => {
 	const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/member/join`, {
-		method: 'post',
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
 		body: JSON.stringify(data),
 		credentials: 'include',
 	})
