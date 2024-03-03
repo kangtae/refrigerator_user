@@ -10,16 +10,22 @@ interface FormValue {
 
 const onSubmit = async (data: FormValue) => {
 	try {
-		console.log("$44")
 		const response = await signIn("credentials", {
 			userId: data.userId,
 			password : data.password,
 			redirect: false,
 		})
-		console.log("response",response)
+		console.log("signin",response)
+		if(response.status !== 200) {
+			alert("아이디 및 비밀번호가 일치하지 않습니다.");
+			return;
+		}
+		alert("로그인 하였습니다.")
 	} catch (err) {
-		console.error(err);
+		alert("서버 에러입니다.")
 	}
+
+
 }
 
 export {onSubmit}
