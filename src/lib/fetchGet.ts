@@ -3,15 +3,16 @@ export default async function fetchGet(url: string, options?: any) {
     headers: {
       "Content-Type": "application/json",
       credentials: "include",
+      method: "GET",
     },
   };
 
-  if (options.params) {
+  if (options?.params) {
     const to_array_params: any = Object.entries(options?.params);
     url += "?" + decodeURIComponent(new URLSearchParams(to_array_params).toString());
   }
 
-  const res = await fetch(url, base_options);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${url}`, base_options);
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
