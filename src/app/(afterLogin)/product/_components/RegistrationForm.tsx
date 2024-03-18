@@ -3,14 +3,20 @@
 import Input from "@/app/(afterLogin)/_components/Input";
 import Select from "@/app/(afterLogin)/_components/Select";
 import useInput from "@/app/(afterLogin)/hooks/useInput";
+import fetchCommon from "@/lib/fetchCommon";
 export default function RegistrationForm({categoryOptions}) {
 	const productName = useInput({initialValue:""})
-	const categoryName = useInput({initialValue:"육류"})
+	const categoryId = useInput({initialValue:1})
+	const productImageUrl = useInput({initialValue:""})
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log("e",productName.value)
-		console.log("e",categoryName.value)
+		const data = {
+			categoryId : categoryId.value,
+			productName: productName.value,
+			productImageUrl: productImageUrl.value
+		}
+		await fetchCommon({url: "/products",method: "POST", data})
 	}
 	return (
 		<form onSubmit={handleSubmit}>
@@ -19,8 +25,8 @@ export default function RegistrationForm({categoryOptions}) {
 					label="카테고리"
 					options={categoryOptions}
 					id="category"
-					value={categoryName.value}
-					onChange={categoryName.onChange}
+					value={categoryId.id}
+					onChange={categoryId.onChange}
 				/>
 				<Input
 					label="제품명"
@@ -35,6 +41,8 @@ export default function RegistrationForm({categoryOptions}) {
 					type="text"
 					id="productImgURL"
 					placeholder="이미지 주소를 넣어주세요"
+					onChange={productImageUrl.onChange}
+					required
 				/>
 			</div>
 			<button type="submit"

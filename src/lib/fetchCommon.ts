@@ -1,16 +1,13 @@
-export default async function fetchGet(url: string, options?: any) {
+export default async function fetchCommon({url = "", method = "POST", data = {},
+} : {url: string, method: string, data}) {
 	const base_options = {
 		headers: {
 			"Content-Type": "application/json",
 		},
 		credentials: "include",
-		method: "GET",
+		method,
+		body : JSON.stringify(data)
 	};
-
-	if (options?.params) {
-		const to_array_params: any = Object.entries(options?.params);
-		url += "?" + decodeURIComponent(new URLSearchParams(to_array_params).toString());
-	}
 
 	const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${url}`, base_options);
 	// The return value is *not* serialized

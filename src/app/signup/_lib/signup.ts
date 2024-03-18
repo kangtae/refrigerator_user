@@ -14,8 +14,7 @@ const onSubmit = async (data: FormValue) => {
 		},
 		body: JSON.stringify(data),
 		credentials: 'include',
-	})
-	console.log("onSubmit",response);
+	});
 	if (response.error) {
 		// 에러 처리 로직
 		console.error(response.error);
