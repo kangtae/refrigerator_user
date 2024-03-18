@@ -14,6 +14,7 @@ const useInput = ({ initialValue = '' }: UseInputProps = {}) => {
 	return {
 		value,
 		onChange: handleChange,
+		set: (value) => setValue(value),
 		reset: () => setValue(''),
 	};
 };
