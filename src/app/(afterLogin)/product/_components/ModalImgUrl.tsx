@@ -1,8 +1,8 @@
 import React, {Fragment, useState} from 'react';
 import {PRODUCT_ICONS} from "@/app/(afterLogin)/product/_constant/productIcons";
 import Radio from "@/app/(afterLogin)/_components/Radio";
-const ModalImgUrl = ({onClose, onSubmit}) => {
-	const [selectedValue, setSelectedValue] = useState<string>('food-icons8-apple-fruit-100');
+const ModalImgUrl = ({onClose, onSubmit,defaultValue}) => {
+	const [selectedValue, setSelectedValue] = useState<string>(defaultValue);
 	const handleRadioChange = (value: string) => {
 		setSelectedValue(value);
 	};

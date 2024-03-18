@@ -53,7 +53,7 @@ export default function RegistrationForm({categoryOptions}) {
 						label="제품 이미지 URL"
 						type="text"
 						id="productImgURL"
-						placeholder="이미지 주소를 넣어주세요"
+						placeholder="이미지 찾기로 등록해주세요"
 						onChange={productImageUrl.onChange}
 						value={productImageUrl.value}
 						required
@@ -75,6 +75,7 @@ export default function RegistrationForm({categoryOptions}) {
 			{isModalUrl && <ModalImgUrl
 				onClose={toggleModal}
 				onSubmit={submitIconClass}
+				defaultValue={productImageUrl.value}
 			/>}
 		</>
 
