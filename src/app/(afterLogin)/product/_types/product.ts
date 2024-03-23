@@ -1,7 +1,8 @@
 export interface IProductList {
   id: number;
+  categoryId: null | number;
   categoryName: string;
   productName: string;
-  productImageUrl: string;
+  productImageClass: string;
   createdAt: null;
 }

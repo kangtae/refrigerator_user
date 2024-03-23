@@ -1,15 +1,15 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 
 // helper
 import { productListQueryFn } from "./_helper/fetch/reactQueryFn";
 
 // components
 import ProductList from "./_components/ProductList";
-import Link from "next/link";
 
 export default async function ProductListPage() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({ queryKey: ["productList"], queryFn: productListQueryFn });
+  await queryClient.prefetchQuery({ queryKey: ["productList", 0], queryFn: () => productListQueryFn(0) });
   const dehydratedState = dehydrate(queryClient);
 
   return (

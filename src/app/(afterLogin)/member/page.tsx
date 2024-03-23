@@ -8,7 +8,7 @@ import MemberList from "./_components/MemberList";
 
 export default async function ProductListPage() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({ queryKey: ["memberList"], queryFn: memberListQueryFn });
+  await queryClient.prefetchQuery({ queryKey: ["memberList", 0], queryFn: () => memberListQueryFn(0) });
   const dehydratedState = dehydrate(queryClient);
 
   return (

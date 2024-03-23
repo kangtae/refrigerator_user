@@ -1,6 +1,7 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 
 // helper
 import { memberListQueryFn } from "../_helper/fetch/reactQueryFn";
@@ -12,7 +13,16 @@ import Pagination from "../../_components/Pagination";
 import { IMemberList } from "../_types/member";
 
 export default function MemberList() {
-  const { data } = useQuery({ queryKey: ["memberList"], queryFn: memberListQueryFn });
+  const [page, setPage] = useState(0);
+  const { data } = useQuery({
+    queryKey: ["memberList", page],
+    queryFn: () => memberListQueryFn(page),
+    placeholderData: keepPreviousData,
+  });
+
+  const onPageChange = (currenPage: number) => {
+    setPage(currenPage);
+  };
 
   return (
     <>
@@ -40,7 +50,7 @@ export default function MemberList() {
         })}
       </ul>
 
-      <Pagination />
+      <Pagination size={10} totalCount={data.totalCount} currentPage={page} onPageChange={onPageChange} />
     </>
   );
 }
