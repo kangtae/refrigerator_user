@@ -1,5 +1,6 @@
 export default async function fetchCommon({url = "", method = "POST", data = {},
 } : {url: string, method: string, data}) {
+	console.log("method",method);
 	const base_options = {
 		headers: {
 			"Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Select = ({value, label, id, options, onChange}) => {
+	console.log("value222",value);
 	return (
 		<>
 			<div>
