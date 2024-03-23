@@ -3,10 +3,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navigation() {
-  const navigation = [{ name: "제품 리스트", url: "/product" }];
+  const navigation = [
+    { name: "제품 리스트", url: "/product" },
+    { name: "멤버 리스트", url: "/member" },
+  ];
   const pathname = usePathname();
-
-  // console.log("pathname", pathname, pathname.match(item.name));
 
   return (
     <ul className="mt-8">

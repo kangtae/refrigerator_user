@@ -18,7 +18,7 @@ export default function ButtonGroup({ id = "" }: IButtonGroupProps) {
     });
 
     if (res.ok) {
-      console.log("res", res);
+      alert("삭제 되었습니다.");
       router.push("/product");
     }
   };
@@ -40,7 +40,7 @@ export default function ButtonGroup({ id = "" }: IButtonGroupProps) {
       <button
         type="button"
         className="rounded bg-gray-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        // onClick={onClickDelete(id)}
+        onClick={onClickDelete(id)}
       >
         삭제
       </button>
