@@ -1,12 +1,13 @@
 "use client";
 import {useState} from "react";
-
+import {useRouter} from "next/navigation";
 import Input from "@/app/(afterLogin)/_components/Input";
 import Select from "@/app/(afterLogin)/_components/Select";
 import useInput from "@/app/(afterLogin)/hooks/useInput";
 import fetchCommon from "@/lib/fetchCommon";
 import ModalImgUrl from "@/app/(afterLogin)/product/_components/ModalImgUrl";
 export default function RegistrationForm({categoryOptions, inItData ,paramsId}) {
+	const router = useRouter();
 	let inItDataProduct = null;
 	if(inItData){
 		inItDataProduct = categoryOptions.find(option => {
@@ -20,14 +21,26 @@ export default function RegistrationForm({categoryOptions, inItData ,paramsId}) 
 	const [isModalUrl , setIsModalUrl] = useState(false)
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const data = {
-			categoryId : Number(categoryId.value),
-			productName: productName.value,
-			productImageClass: productImageClass.value
+		try{
+			const data = {
+				categoryId : Number(categoryId.value),
+				productName: productName.value,
+				productImageClass: productImageClass.value
+			}
+			const url = inItData ? `/products/${paramsId}` : "/products1";
+			const method = inItData ? "PUT" : "POST";
+			const message = inItData ? "수정" : "등록";
+			const res = await fetchCommon({url: url,method: method, data})
+			if(!res){
+				alert(`제품 ${message}에 실패하였습니다.`)
+				return;
+			}
+			alert(`제품 ${message}을 하였습니다.`)
+			router.push("/product");
+		}catch (e) {
+			console.log(e)
 		}
-		const url = inItData ? `/products/${paramsId}` : "/products";
-		const method = inItData ? "PUT" : "POST";
-		await fetchCommon({url: url,method: method, data})
+
 	}
 	const toggleModal = () => {
 		setIsModalUrl(!isModalUrl)
