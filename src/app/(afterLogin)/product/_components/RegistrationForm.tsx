@@ -16,14 +16,14 @@ export default function RegistrationForm({categoryOptions, inItData ,paramsId}) 
 	}
 	const productName = useInput({initialValue:inItData?.productName || ""})
 	const categoryId = useInput({initialValue: inItDataProduct?.id || 1})
-	const productImageUrl = useInput({initialValue:inItData?.productImageUrl || ""})
+	const productImageClass = useInput({initialValue:inItData?.productImageClass || ""})
 	const [isModalUrl , setIsModalUrl] = useState(false)
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = {
 			categoryId : Number(categoryId.value),
 			productName: productName.value,
-			productImageUrl: productImageUrl.value
+			productImageClass: productImageClass.value
 		}
 		const url = inItData ? `/products/${paramsId}` : "/products";
 		const method = inItData ? "PUT" : "POST";
@@ -33,7 +33,7 @@ export default function RegistrationForm({categoryOptions, inItData ,paramsId}) 
 		setIsModalUrl(!isModalUrl)
 	}
 	const submitIconClass = (value) => {
-		productImageUrl.set(value)
+		productImageClass.set(value)
 	}
 	return (
 		<>
@@ -63,8 +63,8 @@ export default function RegistrationForm({categoryOptions, inItData ,paramsId}) 
 						type="text"
 						id="productImgURL"
 						placeholder="이미지 찾기로 등록해주세요"
-						onChange={productImageUrl.onChange}
-						value={productImageUrl.value}
+						onChange={productImageClass.onChange}
+						value={productImageClass.value}
 						required
 						disabled
 					/>
@@ -85,7 +85,7 @@ export default function RegistrationForm({categoryOptions, inItData ,paramsId}) 
 			{isModalUrl && <ModalImgUrl
 				onClose={toggleModal}
 				onSubmit={submitIconClass}
-				defaultValue={productImageUrl.value}
+				defaultValue={productImageClass.value}
 			/>}
 		</>
 
