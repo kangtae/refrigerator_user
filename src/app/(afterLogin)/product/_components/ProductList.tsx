@@ -13,11 +13,15 @@ import Pagination from "../../_components/Pagination";
 // types
 import { IProductList } from "../_types/product";
 
-export default function ProductList() {
+interface IProductListProps {
+  keyword: string;
+}
+
+export default function ProductList({ keyword = "" }: IProductListProps) {
   const [page, setPage] = useState(0);
   const { data, refetch } = useQuery({
     queryKey: ["productList", page],
-    queryFn: () => productListQueryFn(page),
+    queryFn: () => productListQueryFn(page, keyword),
     placeholderData: keepPreviousData,
   });
 
@@ -48,7 +52,7 @@ export default function ProductList() {
         {data?.response?.map((item: IProductList, idx: number) => {
           const { id = "", categoryName = "", productName = "", productImageClass = "", createdAt = "" } = item;
           return (
-            <li key={id} className="flex items-center py-3 border-b border-b-slate-200 hover:bg-slate-100">
+            <li key={id} className="flex items-center py-3 bg-white border-b border-b-slate-200 hover:bg-slate-100">
               <div className="w-[100px] text-sm text-gray-500 text-center">{idx + 1}</div>
               <div className="w-full text-sm">
                 <Link href={`/product/${id}`} className="flex items-center">
@@ -74,7 +78,7 @@ export default function ProductList() {
           );
         })}
       </ul>
-      <Pagination size={10} totalCount={data.totalCount} currentPage={page} onPageChange={onPageChange} />
+      <Pagination size={10} totalCount={data?.totalCount} currentPage={page} onPageChange={onPageChange} />
     </>
   );
 }

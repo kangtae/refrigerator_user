@@ -37,7 +37,7 @@ export default function MemberList() {
         {data.response.map((item: IMemberList, idx: number) => {
           const { id = "", userName = "", userId = "", email = "", createTime = "" } = item;
           return (
-            <li key={id} className="flex items-center py-3 border-b border-b-slate-200 hover:bg-slate-100">
+            <li key={id} className="flex items-center py-3 bg-white border-b border-b-slate-200 hover:bg-slate-100">
               <div className="w-[100px] text-sm text-gray-500 text-center">{idx + 1}</div>
               <div className="w-[180px] text-sm text-gray-500 text-center">{userId}</div>
               <div className="w-[180px] text-sm text-gray-500 text-center">{userName}</div>

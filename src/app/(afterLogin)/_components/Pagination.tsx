@@ -7,7 +7,7 @@ interface IPaginationProps {
   onPageChange: (page: number) => void;
 }
 
-export default function Pagination({ size = 10, totalCount, currentPage = 0, onPageChange }: IPaginationProps) {
+export default function Pagination({ size = 10, totalCount = 0, currentPage = 0, onPageChange }: IPaginationProps) {
   const pages = Math.ceil(totalCount / size);
 
   const isFirstPage = currentPage + 1 === 1;
