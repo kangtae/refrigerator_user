@@ -15,7 +15,6 @@ const onSubmit = async (data: FormValue) => {
 			password : data.password,
 			redirect: false,
 		})
-		console.log("signin",response)
 		if(response.status !== 200) {
 			alert("아이디 및 비밀번호가 일치하지 않습니다.");
 			return;
@@ -24,7 +23,6 @@ const onSubmit = async (data: FormValue) => {
 	} catch (err) {
 		alert("서버 에러입니다.")
 	}
-
 
 }
 

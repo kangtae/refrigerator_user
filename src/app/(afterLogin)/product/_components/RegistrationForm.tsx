@@ -13,7 +13,6 @@ export default function RegistrationForm({categoryOptions, inItData ,paramsId}) 
 		inItDataProduct = categoryOptions.find(option => {
 			return inItData.categoryName === option.categoryName;
 		})
-		console.log("inItDataProduct",inItDataProduct);
 	}
 	const productName = useInput({initialValue:inItData?.productName || ""})
 	const categoryId = useInput({initialValue: inItDataProduct?.id || 1})
