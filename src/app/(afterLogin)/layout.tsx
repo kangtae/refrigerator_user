@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Navigation from "./_components/navigation";
+import LogoutButton from "@/app/(afterLogin)/_components/LogoutButton";
 
 export default function afterLoginLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -9,6 +10,7 @@ export default function afterLoginLayout({ children }: { children: React.ReactNo
           <Link href="/home">admin</Link>
         </h1>
         <Navigation />
+	      <LogoutButton />
       </div>
       <div className="w-4/5 p-10 bg-gray-100">{children}</div>
     </div>

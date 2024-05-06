@@ -2,7 +2,8 @@
 
 import React from "react";
 import { useForm} from "react-hook-form";
-import {onSubmit} from '../_lib/signin';
+import {signIn} from "next-auth/react";
+import { useRouter } from 'next/navigation';
 
 
 interface FormValue {
@@ -14,11 +15,30 @@ interface FormValue {
 
 
 const SignInForm = () => {
+	const router = useRouter();
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormValue>({ mode: "onChange" });
+	const onSubmit = async (data: FormValue) => {
+		try {
+			const response = await signIn("credentials", {
+				userId: data.userId,
+				password : data.password,
+				redirect: false,
+			})
+			if(response.status !== 200) {
+				alert("아이디 및 비밀번호가 일치하지 않습니다.");
+				return;
+			}
+			alert("로그인 하였습니다.")
+			router.push("/product")
+		} catch (err) {
+			alert("서버 에러입니다.")
+		}
+
+	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="form-control__items">
