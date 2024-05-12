@@ -9,7 +9,9 @@ const LogoutButton = () => {
 			window.location.href = url;
 	}
 	return (
-		<button onClick={handle}>
+		<button
+			className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm"
+			onClick={handle}>
 			로그아웃
 		</button>
 	);

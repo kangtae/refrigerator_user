@@ -1,7 +1,12 @@
-interface ITestButtonProps {
-  label: string;
-  className?: string;
+import React from "react";
+
+interface Props {
+	title: string;
 }
-export default function TestButton({ label }: ITestButtonProps) {
-  return <button className="px-3 py-2 border border-gray-500 rounded-md hover:bg-gray-200">{label}</button>;
+export default function PageTitle({ title }: Props) {
+  return <>
+	  <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+		  <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">{title}</h2>
+	  </div>
+  </>
 }
