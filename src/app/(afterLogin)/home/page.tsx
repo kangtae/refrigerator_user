@@ -12,7 +12,7 @@ export default async function HomePage() {
     today_join_member_count = 0,
     total_product_count = 0,
   } = data?.response || {};
-  console.log("data =>", top5_product);
+  // console.log("data =>", top5_product);
 
   return (
     <div className="space-y-4">
