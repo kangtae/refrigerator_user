@@ -15,12 +15,14 @@ const onSubmit = async (data: FormValue) => {
 		body: JSON.stringify(data),
 		credentials: 'include',
 	});
+	console.log()
 	if (response.error) {
 		// 에러 처리 로직
 		console.error(response.error);
 	} else {
 		// 회원가입 성공
 		console.log("회원가입", response)
+
 	}
 }
 
