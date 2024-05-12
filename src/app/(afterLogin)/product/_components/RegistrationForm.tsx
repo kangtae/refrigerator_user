@@ -69,7 +69,7 @@ export default function RegistrationForm({categoryOptions, inItData ,paramsId}) 
 					/>
 
 				</div>
-				<div className="grid gap-6 mb-6 md:grid-cols-2">
+				<div className="grid gap-6 mb-6 md:grid-cols-2 flex items-end">
 					<Input
 						label="제품 이미지 URL"
 						type="text"
